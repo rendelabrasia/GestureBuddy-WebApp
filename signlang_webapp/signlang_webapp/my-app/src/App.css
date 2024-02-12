@@ -36,3 +36,83 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+    margin-top: 120px; /* Adjust this value to control space from the top */
+    width: 100%; /* Adjust based on your content width */
+}
+
+.translation-section {
+  min-width: 60%;
+  min-height: 50px;
+  background-color: #eee;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls button {
+  margin: 0 10px;
+}
+
+.video-feed {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column;
+  width: 35%;
+  height: 300px; /* Adjust based on actual video feed size */
+  background-color: #ffffff; /* Placeholder for video feed */
+  margin-bottom: 20px;
+}
+
+.video-feed video,
+.video-feed canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
