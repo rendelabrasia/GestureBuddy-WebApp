@@ -1,15 +1,12 @@
 import './App.css';
+import logo from './Gesture-Buddy-Logo.png';
 import React, { useState } from 'react';
 import Webcam from "react-webcam";
+import MyButtons from './MyButtons'; // Make sure the import path is correct
 
 function App() {
   const [videoEnabled, setVideoEnabled] = useState(true);
-
-  const videoConstraints = {
-    width: 1280,  // Specify your desired width
-    height: 720,  // Specify your desired height
-    facingMode: "user"
-  };
+  // ... other state and functions
 
   const toggleVideo = () => {
     setVideoEnabled(!videoEnabled);
@@ -26,23 +23,31 @@ function App() {
 
   return (
     <div className="app-container">
+      <header className="app-header">
+        <img src={logo} alt="Gesture Buddy Logo" className="app-logo" />
+      </header>
       {videoEnabled && (
-       <div className="video-feed" style={{ display: videoEnabled ? 'block' : 'none' }}>
+        <div className="video-feed" style={{ display: videoEnabled ? 'block' : 'none' }}>
           <Webcam
-          
-          videoConstraints={videoConstraints}
-          mirrored = {true} />
-          
+            videoConstraints={{
+              width: 1280,
+              height: 720,
+              facingMode: "environment"
+            }}
+            mirrored={true} />
         </div>
       )}
       <div className="translation-section">
         Translation Appears Here
       </div>
-      <div className="controls">
-        <button onClick={() => {}}>Settings</button>
-        <button onClick={toggleVideo}>{videoEnabled ? 'Turn Off' : 'Turn On'} Video</button>
-        <button onClick={() => convertTextToSpeech('Sample Text')}>Text to Speech</button>
-      </div>
+      
+      {/* Pass the props to MyButtons component */}
+      <MyButtons 
+        videoEnabled={videoEnabled} 
+        toggleVideo={toggleVideo} 
+        convertTextToSpeech={convertTextToSpeech} 
+      />
+
     </div>
   );
 }

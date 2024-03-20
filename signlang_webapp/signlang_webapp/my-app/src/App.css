@@ -1,27 +1,13 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.app-header {
+  background-color: #121212;
+  min-height: 10px;
+  /* display: flex;
+  flex-direction: column; */
+  align-items: left;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -37,19 +23,28 @@
   }
 }
 
+.app {
+  text-align: left;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* 100% of the viewport height */
+}
+
+/* Adjust .app-container to center its children vertically */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-    margin-top: 120px; /* Adjust this value to control space from the top */
-    width: 100%; /* Adjust based on your content width */
+  width: 100%; /* Adjust based on your content width */
+  /* Remove margin-top if you want true vertical centering */
 }
 
 .translation-section {
   min-width: 60%;
   min-height: 50px;
-  background-color: #eee;
+  background-color: #121212;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
@@ -67,7 +62,7 @@
   flex-direction: column;
   width: 35%;
   height: 300px; /* Adjust based on actual video feed size */
-  background-color: #ffffff; /* Placeholder for video feed */
+  background-color: #121212; /* Placeholder for video feed */
   margin-bottom: 20px;
 }
 
@@ -77,3 +72,62 @@
   max-height: 100%;
 }
 
+body {
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light grey text */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.app-logo {
+  height: 200px;
+  align-items: left;
+}
+
+
+.round-button {
+  width: 64px;  /* Example size */
+  height: 64px;  /* Same as width to make a circle */
+  border-radius: 50%;  /* Makes the button round */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;  /* Removes any default margin */
+  /* Add box-shadow to provide depth to the button */
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25);
+  transition: background-color 0.3s ease;
+}
+
+.button-label {
+  text-align: center;  /* Centers the label text below the button */
+  margin-top: 8px;  /* Spacing between button and text */
+  color: #E0E0E0;  /* White color for the text */
+}
+
+/* Adjust icon size and color if needed */
+.round-button .MuiSvgIcon-root {
+  font-size: 1.5rem; /* Example size, adjust as needed */
+}
+
+/* Style for the text under the icon */
+.round-button div {
+  font-size: 0.75rem; /* Example size, adjust as needed */
+  margin-top: 4px; /* Space between icon and text */
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around; /* This spreads out the buttons evenly */
+  align-items: center;
+  width: 40%; /* This ensures the container spans the entire width of its parent */
+  padding: 0 16px; /* Add padding to the left and right if needed */
+}
+
+/* This targets each individual button group */
+.button-group {
+  flex: 1; /* This gives each button group an equal ability to grow */
+  display: flex;
+  flex-direction: column; /* This stacks the icon and text on top of each other */
+  align-items: center; /* This centers them horizontally */
+  justify-content: center; /* This centers them vertically */
+  margin: 8px; /* This adds some space between each button group */
+}
