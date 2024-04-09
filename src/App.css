@@ -5,27 +5,13 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  animation: App-logo-spin infinite 20s linear;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +21,115 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-header, .app-header {
+  background-color: #282c34; /* Updated to the first specified color for consistency */
+  min-height: 10px;
+  align-items: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.app {
+  text-align: left;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* 100% of the viewport height */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%; /* Adjust based on your content width */
+}
+
+.translation-section {
+  min-width: 60%;
+  min-height: 50px;
+  background-color: #121212;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls button {
+  margin: 0 10px;
+}
+
+.video-feed {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  flex-direction: column;
+  width: 35%;
+  height: 300px; /* Adjust based on actual video feed size */
+  background-color: #121212; /* Placeholder for video feed */
+  margin-bottom: 20px;
+}
+
+.video-feed video,
+.video-feed canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+body {
+  background-color: #121212; /* Dark background */
+  color: #E0E0E0; /* Light grey text */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.round-button {
+  width: 64px; 
+  height: 64px; 
+  border-radius: 50%;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25);
+  transition: background-color 0.3s ease;
+}
+
+.button-label, .round-button div {
+  text-align: center;  
+  color: #E0E0E0;  
+}
+
+.button-label {
+  margin-top: 8px; 
+}
+
+.round-button .MuiSvgIcon-root {
+  font-size: 1.5rem; 
+}
+
+.round-button div {
+  font-size: 0.75rem;
+  margin-top: 4px; 
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  width: 40%; 
+  padding: 0 16px; 
+}
+
+.button-group {
+  flex: 1; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  margin: 8px; 
 }
