@@ -3,19 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@tensorflow-models/coco-ssd": "^2.1.0",
-    "@tensorflow/tfjs": "^2.4.0",
+    "@tensorflow/tfjs": "^4.17.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "fingerpose": "0.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-webcam": "^5.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set HTTPS=true&& set SSL_CRT_FILE=localhost.pem&& set SSL_KEY_FILE=localhost-key.pem&& react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -6,7 +6,7 @@ import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import "./App.css";
 // 2. TODO - Import drawing utility here
-// e.g. import { drawRect } from "./utilities";
+import { drawRect } from "./utilities";
 
 function App() {
   const webcamRef = useRef(null);
@@ -16,11 +16,14 @@ function App() {
   const runCoco = async () => {
     // 3. TODO - Load network 
     // e.g. const net = await cocossd.load();
+
+    const net = await tf.loadGraphModel('https://tensorflowjsrealtimemodel.capstone.s3.us-east.cloud-object-storage.appdomain.cloud/model.json');
+    tf.setBackend('webgl');
     
     //  Loop and detect hands
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 30);
   };
 
   const detect = async (net) => {
@@ -43,14 +46,36 @@ function App() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // 4. TODO - Make Detections
-      // e.g. const obj = await net.detect(video);
-
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
 
+      // 4. TODO - Make Detections
+      // e.g. const obj = await net.detect(video);
+      const img = tf.browser.fromPixels(video);  // Capture frame from video
+      const resized = tf.image.resizeBilinear(img, [640, 480]);  // Resize to 320x320
+      //const normalized = resized.div(tf.scalar(255.0));  // Normalize pixel values to [0,1]
+      const casted = resized.cast('int32')
+      const expanded = casted.expandDims(0);  // Add batch dimension
+      const obj = await net.executeAsync(expanded);  // Execute model
+      console.log(obj);
+      
+      const boxes = await obj[5].array()
+      const classes = await obj[4].array()
+      const scores = await obj[6].array()
+
+
+
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
+
+      requestAnimationFrame(()=>{drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx)}); 
+
+      tf.dispose(img)
+      tf.dispose(resized)
+      //tf.dispose(normalized)
+      tf.dispose(casted)
+      tf.dispose(expanded)
+      tf.dispose(obj)
     }
   };
 
