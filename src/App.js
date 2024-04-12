@@ -68,7 +68,7 @@ function App() {
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
 
-      requestAnimationFrame(()=>{drawRect(boxes[0], classes[0], scores[0], 0.5, videoWidth, videoHeight, ctx)}); 
+      requestAnimationFrame(()=>{drawRect(boxes[0], classes[0], scores[0], 0.8, videoWidth, videoHeight, ctx)}); 
 
       tf.dispose(img)
       tf.dispose(resized)
@@ -84,36 +84,32 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Webcam
-          ref={webcamRef}
-          muted={true} 
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />
-
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 8,
-            width: 640,
-            height: 480,
-          }}
-        />
+        <div className="logo-banner">
+          <img src="/Gesture-Buddy-Logo.png" alt="Logo" style={{ height: '200px' }} />
+        </div>
+        <div className="webcam-canvas-container">
+          <Webcam
+            ref={webcamRef}
+            className="Webcam"
+            muted={true}
+            style={{
+              width: 640,
+              height: 480,
+            }}
+          />
+          <canvas
+            ref={canvasRef}
+            className="canvas"
+            style={{
+              width: 640,
+              height: 480,
+            }}
+          />
+        </div>
+        {/* Placeholder for additional components */}
+        <div className="additional-components">
+          {/* Additional components will go here */}
+        </div>
       </header>
     </div>
   );

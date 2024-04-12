@@ -14,18 +14,44 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  justify-content: flex-start; /* Align content to the start of the header */
 }
 
-.App-link {
-  color: #61dafb;
+.logo-banner {
+  width: 100%;
+  padding: 10px 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center; /* Center the logo */
+}
+
+/* Remove the fixed height to allow flexibility */
+.webcam-canvas-container {
+  position: relative;
+  width: 640px; /* Set width to match webcam */
+  margin-bottom: 20px; /* Space for additional components */
+}
+
+/* Ensure the webcam and canvas stack correctly and the canvas is on top */
+.Webcam, .canvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.canvas {
+  z-index: 9; /* Canvas should be above the webcam feed */
+}
+
+.Webcam {
+  z-index: 8;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +61,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Additional components can be styled here */
+.additional-components {
+  width: 100%;
+  /* Style your additional components */
 }
