@@ -5,7 +5,7 @@ const createExtendedLabelMap = () => {
     'A', 'B', 'Baby', 'C', 'D', 'E', 'ExcuseMe', 'F', 'G', 'H', 
     'Hello', 'HowAreYou', 'I', 'ILoveYou', 'J', 'K', 'L', 'M', 'MeetYou', 'My', 
     'N', 'Name', 'Nice', 'No', 'O', 'P', 'Q', 'R', 'S', 'T', 
-    'TakeCare', 'ThankYou', 'U', 'V', 'W', 'X', 'Y', 'Yes', 'Your', 'Z'
+    'TakeCare', 'ThankYou', 'U', 'V', 'W', 'X', 'Y', 'Yes', 'Your', 'Hello'
   ];
 
   // A simple array of colors to cycle through for each gesture
@@ -23,7 +23,7 @@ const createExtendedLabelMap = () => {
 };
 
 // Usage
-const labelMap = createExtendedLabelMap();
+export const labelMap = createExtendedLabelMap();
 console.log(labelMap);
 
 // Define a drawing function
@@ -49,4 +49,5 @@ export const drawRect = (boxes, classes, scores, threshold, imgWidth, imgHeight,
         }
     }
   }
+
 }

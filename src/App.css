@@ -25,7 +25,7 @@
 
 .logo-banner {
   width: 100%;
-  padding: 10px 0;
+  padding: 1px 0;
   box-sizing: border-box;
   display: flex;
   justify-content: center; /* Center the logo */
@@ -63,8 +63,31 @@
   }
 }
 
-/* Additional components can be styled here */
-.additional-components {
-  width: 100%;
-  /* Style your additional components */
+/* Style for the detected gestures box positioned absolutely relative to the viewport */
+.detected-gestures-container {
+  position: fixed; /* Fixed position to the viewport */
+  bottom: 20px; /* Positioned 20px from the bottom of the screen */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset for the centering */
+  width: 640px; /* Match the width of your webcam/canvas */
+  max-height: 100px; /* Set a max height for the container */
+  overflow-y: auto; /* Allow scrolling if many gestures are detected */
+  background: #333; /* Dark background for the box */
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for some depth */
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10; /* Ensure it's above the webcam/canvas */
 }
+
+.detected-gesture {
+  background: rgba(255, 255, 255, 0.1); /* Slightly lighter background for each gesture */
+  padding: 5px 10px;
+  border-radius: 5px; /* Rounded corners for the gesture elements */
+}
+
+

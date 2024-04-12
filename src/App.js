@@ -6,11 +6,13 @@ import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import "./App.css";
 // 2. TODO - Import drawing utility here
-import { drawRect } from "./utilities";
+import { drawRect, labelMap } from "./utilities";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const [gestureHistory, setGestureHistory] = useState('');
+
 
   // Main function
   const runCoco = async () => {
@@ -25,6 +27,25 @@ function App() {
       detect(net);
     }, 30);
   };
+
+  const speak = (text) => {
+    const synth = window.speechSynthesis;
+    if (synth.speaking) {
+      console.error('speechSynthesis.speaking');
+      return;
+    }
+    if (text !== '') {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.onend = () => {
+        console.log('SpeechSynthesisUtterance.onend');
+      };
+      utterance.onerror = (e) => {
+        console.error('SpeechSynthesisUtterance.onerror', e);
+      };
+      synth.speak(utterance);
+    }
+  };
+  
 
   const detect = async (net) => {
     // Check data is available
@@ -63,8 +84,33 @@ function App() {
       const classes = await obj[4].array()
       const scores = await obj[6].array()
 
+      //4.5 Put detected gesture in textbox
+      const detectedClasses = classes[0]
+        .map((classIndex, i) => {
+          // Only add the gesture to the list if the score is above the threshold
+          if (scores[0][i] > 0.5) {
+            return labelMap[classIndex + 1]?.name;
+          }
+          return null;
+        })
+        .filter(name => name); // This ensures that only non-null names are included
 
+        if (detectedClasses.length > 0) {
+          const newWord = detectedClasses.join(' '); // Create a sentence from the new words
+          setGestureHistory(prevHistory => {
+            // Make sure prevHistory is a string
+            const historyString = typeof prevHistory === 'string' ? prevHistory : '';
+            const lastWord = historyString.split(' ').pop();
+            // Only append the new word if it's different from the last word in the history
+            if (newWord !== lastWord) {
+              // Use trim to remove any leading or trailing spaces
+              return `${historyString} ${newWord}`.trim();
+            }
+            return historyString;
+          });
+        }
 
+      
       // 5. TODO - Update drawing utility
       // drawSomething(obj, ctx)  
 
@@ -85,7 +131,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="logo-banner">
-          <img src="/Gesture-Buddy-Logo.png" alt="Logo" style={{ height: '200px' }} />
+          <img src="/Gesture-Buddy-Logo.png" alt="Logo" style={{ height: '150px' }} />
         </div>
         <div className="webcam-canvas-container">
           <Webcam
@@ -106,10 +152,10 @@ function App() {
             }}
           />
         </div>
-        {/* Placeholder for additional components */}
-        <div className="additional-components">
-          {/* Additional components will go here */}
-        </div>
+        <div className="detected-gestures-container">
+        <p>{gestureHistory || "No gestures detected."}</p>
+        <button onClick={() => speak(gestureHistory)}>Speak Gestures</button>
+      </div>
       </header>
     </div>
   );
