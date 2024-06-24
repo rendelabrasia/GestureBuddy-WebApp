@@ -85,7 +85,9 @@ Key software components used:
 Key findings include:
 
 **Detection Threshold:** Configured to display bounding boxes with a threshold probability of 0.7.
+
 **Influence of Image Quality:** Performance affected by color, contrast, brightness, and gesture angle.
+
 **Performance Tuning:** Optimal batch size of 32 identified for balancing detection accuracy and processing time.
 
 ## References
