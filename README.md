@@ -3,6 +3,8 @@
 ## Overview
 Gesture Buddy is a web application designed to translate American Sign Language (ASL) gestures into written and spoken words in real-time. The project aims to enhance communication for the deaf and hard of hearing community by leveraging advanced machine learning and computer vision techniques.
 
+For the Jupyter Notebook used to train/test model, navigate to the repository here: [Other repository](https://github.com/abdueee/capstone)
+
 ## Authors
 Rendel Abrasia
 
